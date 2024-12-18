@@ -1,11 +1,19 @@
 const mongoose = require('mongoose');
 
 const HotelSchema = new mongoose.Schema({
-  name: String,
-fabricationDate:Date,
-  nbr_Room: { type: Number, default: 10 }
-  
+  name: {
+    type: String,
+    required: true, // Le champ est obligatoire
+  },
+  fabricationDate: {
+    type: Date,
+    default: Date.now, // Valeur par défaut
+  },
+  nbr_Room: {
+    type: Number,
+    required: true,
+    default: 0, // Valeur par défaut
+  },
 });
 
-const Hotel = mongoose.model('Hotel', HotelSchema);
-module.exports = Hotel;
+module.exports = mongoose.model('Hotel', HotelSchema);

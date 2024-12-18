@@ -1,12 +1,16 @@
 const express = require('express');
-const hotelController = require('../controller/Hotelc'); // Assurez-vous du bon chemin
 const router = express.Router();
+const hotelController = require('../controller/Hotelc');
 
-// Définir les routes
-router.post('/', hotelController.createHotel); // Créer un hôtel
-router.get('/', hotelController.getAllHotels); // Récupérer tous les hôtels
-router.get('/:id', hotelController.getHotelById); // Récupérer un hôtel par ID
-router.put('/:id', hotelController.updateHotel); // Mettre à jour un hôtel par ID
-router.delete('/:id', hotelController.deleteHotel); // Supprimer un hôtel par ID
+// Route pour créer un hôtel
+router.post('/create', hotelController.createHotel);
 
-module.exports = router; // Assurez-vous d'exporter correctement
+// Autres routes
+router.put('/update/:id', hotelController.updateHotel);
+router.delete('/delete/:id', hotelController.deleteHotel);
+router.get('/getAll', hotelController.getAllHotels);
+router.get('/get/:id', hotelController.getHotelById);
+// Route pour rechercher des hôtels avec entre 10 et 100 chambres
+router.get('/searchByRooms', hotelController.getHotelsByRoomRange);
+
+module.exports = router;
